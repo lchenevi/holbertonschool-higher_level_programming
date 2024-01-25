@@ -19,6 +19,3 @@ def fizzbuzz():
 
         # Print a space after each output for better readability.
         print(" ", end='')
-
-# Call the 'fizzbuzz' function to execute the FizzBuzz logic.
-#fizzbuzz()
