@@ -21,4 +21,4 @@ def fizzbuzz():
         print(" ", end='')
 
 # Call the 'fizzbuzz' function to execute the FizzBuzz logic.
-fizzbuzz()
+#fizzbuzz()
