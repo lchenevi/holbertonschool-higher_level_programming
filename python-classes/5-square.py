@@ -1,33 +1,34 @@
 #!/usr/bin/python3
 """Contains an class : 'Square'"""
 
-class Square:
-    def __init__(self, size=0):
-        self.__size = size
 
-    # Property
+class Square:
+    """A class representing a square."""
+
+    def __init__(self, size=0):
+        """Initialize the Square with a given size."""
+        self.size = size
+
     @property
     def size(self):
+        """Get the size of the square."""
         return self.__size
 
-    # Setter modifies
     @size.setter
     def size(self, value):
-        if type(value) != int:
-            raise TypeError('size must be an integer')
-        elif value < 0:
-            raise ValueError('size must be >= 0')
-        else:
-            self.__size = value
+        """Set the size of the square."""
+        if not type(value) is int:
+            raise Exception("size must be an integer")
+        if value < 0:
+            raise Exception("size must be >= 0")
+        self.__size = value
 
     def area(self):
+        """Return square of size"""
         return self.__size ** 2
 
     def my_print(self):
-        size = self.__size
-
-        if size == 0:
+        if self.size == 0:
             print()
-
-        for row in range(size):
-            print('#' * size)
+        for _ in range(self.size):
+            print("#" * self.size)

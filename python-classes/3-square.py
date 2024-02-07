@@ -3,21 +3,15 @@
 
 
 class Square:
+    """Size validation of size in square"""
     def __init__(self, size=0):
-        """Initialize a Square instance with a given size."""
-        try:
-            if not isinstance(size, int):
-                raise Exception('size must be an integer')
-            elif size < 0:
-                raise Exception('size must be >= 0')
-            else:
-                self.__size = size
-        except Exception as e:
-            print(e)
+        """Test et initialise size"""
+        if not type(size) is int:
+            raise Exception("size must be an integer")
+        if int(size) < 0:
+            raise Exception("size must be >= 0")
+        self.__size = size
 
     def area(self):
-        """Return the area of the square."""
-        try:
-            return self.__size ** 2
-        except Exception as e:
-            print(e)
+        """Return square of size"""
+        return self.__size ** 2
