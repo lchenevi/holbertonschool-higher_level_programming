@@ -16,7 +16,7 @@ class Square:
             print(e)
 
     def area(self):
-        '''Return the area of the square.'''
+        """Return the area of the square."""
         try:
             return self.__size ** 2
         except Exception as e:
