@@ -38,10 +38,3 @@ def matrix_divided(matrix, div):
 def raise_err():
     a = 'matrix must be a matrix (list of lists) of integers/floats'
     raise TypeError(a)
-
-matrix = [
-    [1, 2, 3],
-    [4, 5, 6]
-]
-print(matrix_divided(matrix, 3))
-print(matrix)
