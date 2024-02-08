@@ -29,7 +29,7 @@ def matrix_divided(matrix, div):
     for row in matrix:
         new_row = []
         if len(row) != row_len:
-            raise TypeError('Each row must have the same size')
+            raise TypeError('Each row of the matrix must have the same size')
         for elem in row:
             if type(elem) not in [int, float]:
                 raise_err()
