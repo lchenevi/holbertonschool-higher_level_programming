@@ -1,15 +1,8 @@
 #!/usr/bin/python3
+"""Reads a text file and prints its contents to stdout."""
+
+
 def read_file(filename=""):
-    """
-    Reads a text file and prints its contents to stdout.
-
-    Args:
-        filename (str): The name of the text file to read
-        (default is an empty string).
-
-    Returns:
-        None
-    """
     try:
         with open(filename, 'r', encoding='utf-8') as file:
             for line in file:
