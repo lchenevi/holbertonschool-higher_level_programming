@@ -1,28 +1,30 @@
 #!/usr/bin/python3
 """
-Create a class BaseGeometry.
-
+Adds all arguments to a Python list
+and then save them to a file
 
 """
 
 
-class BaseGeometry:
-    """
-    Class that defines the attributes of Geometric Shapes
-    """
-    def area(self):
-        """
-        Method that defines the area of a geomtric shape
-        """
+from sys import argv
+import json
 
-        raise Exception("area() is not implemented")
+save_to_json_file = __import__('5-save_to_json_file').save_to_json_file
+load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
-    def integer_validator(self, name, value):
-        """
-        Method that recieves the value property
-        """
 
-        if type(value) is not int:
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+"""
+Adds all arguments to a Python list
+and then save them to a file"""
+
+if __name__ == "__main__":
+
+    try:
+        my_list = load_from_json_file("add_item.json")
+    except FileNotFoundError:
+        my_list = []
+
+    if len(argv) > 1:
+        my_list.extend(argv[1:])
+
+    save_to_json_file(my_list, "add_item.json")

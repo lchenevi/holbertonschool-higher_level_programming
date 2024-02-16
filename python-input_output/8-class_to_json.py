@@ -1,21 +1,22 @@
 #!/usr/bin/python3
 """
-Create a class BaseGeometry.
-
-
+Returns the dictionary description with simple data structure
+(list, dictionary, string, integer and boolean)
+for JSON serialization of an object
 """
 
 
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
-
-
-class Rectangle(BaseGeometry):
+def class_to_json(obj):
     """
-    Class that defines a rectangle from BaseGeometry Class
-    """
+    Returns the dictionary description with simple data structure
+    for JSON serialization of an object"""
+    if hasattr(obj, '__dict__'):
+        obj_dict = obj.__dict__
 
-    def __init__(self, width, height):
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
-        self.__width = width
-        self.__height = height
+        json_dict = {}
+
+        for key, value in obj_dict.items():
+            if isinstance(value, (list, dict, str, int, bool)):
+                json_dict[key] = value
+
+        return json_dict
