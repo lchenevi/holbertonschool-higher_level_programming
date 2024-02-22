@@ -13,7 +13,7 @@ class Base:
             id (int): If provided, assigns the public instance
                       attribute 'id' with the given value. Otherwise,
                       increments '__nb_objects' and assigns the new
-                      value to 'id'.
+                      value to 'id'
         """
         if id is not None:
             self.id = id
