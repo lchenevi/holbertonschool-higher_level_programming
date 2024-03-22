@@ -1,33 +1,22 @@
 #!/usr/bin/python3
-"""Script that prints all City objects from the database hbtn_0e_14_usa"""
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+"""Prints all City objects from the database hbtn_0e_14_usa"""
+
+
+from sys import argv
 from model_state import Base, State
 from model_city import City
-import sys
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 if __name__ == "__main__":
-    # Extract MySQL username, password, and database name from command line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
-    # Create SQLAlchemy engine to connect to MySQL server
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.
-                           format(username, password, database), pool_pre_ping=True)
-
-    # Create a configured "Session" class
+    user, passwd, database = argv[1], argv[2], argv[3]
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'
+                           .format(user, passwd, database), pool_pre_ping=True)
+    Base.metadata.create_all(engine)
     Session = sessionmaker(bind=engine)
-
-    # Create a Session
     session = Session()
-
-    # Query to retrieve all City objects from the database sorted by id
     cities = session.query(City).order_by(City.id).all()
-
-    # Print results
-    for city in cities:
-        print("{}: ({}) {}".format(city.state.name, city.id, city.name))
-
-    # Close the session
+    for city, state in session.query(
+            City, State).join(State).order_by(City.id.asc()).all():
+        print(f'{state.name}: ({city.id}) {city.name}')
     session.close()
